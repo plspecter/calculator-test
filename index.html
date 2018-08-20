@@ -1,4 +1,13 @@
-<title>Document</title>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Document</title>
 </head>
 
 <body>
@@ -62,18 +71,14 @@
 
     <script type="text/javascript">
 
-        //always settup document.ready so it knows when to run java
-
         $(document).ready(function () {
 
-        //create initial variables for it to refer to later - "", refers to a string of the.. 
-        //..classes string it can be (1, 2, 3, 4 etc. in the DOM)
             var firstNumber = "";
             var secondNumber = "";
             var operator;
             var result;
             var isOperatorChosen;
-        
+
             function initializeCalculator() {
                 firstNumber = "";
                 secondNumber = "";
@@ -83,14 +88,8 @@
 
                 $("#first-number, #second-number, #operator, #result").empty();
             }
-            //create on click function so when you click the class ".number" it refers to everything
-            //..in the DOM with the class number and applies the function to everything nested inside it
 
             $(".number").on("click", function () {
-
-                //if the variable ifOperatorChosen adds another number next to the number chosen (can punch 333, 456, not just 4, 5
-                //else applies the same funciton to the first-number (h1) as well
-
                 if (isOperatorChosen) {
                     secondNumber += this.value;
                     $("#second-number").html(secondNumber);
@@ -101,58 +100,50 @@
                 }
 
             });
-            
-            //When the user clicks on an operator (the red buttons) the...
 
             $(".operator").on("click", function () {
 
                 isOperatorChosen = true;
                 operator = this.value;
                 $("#operator").html($(this).text());
-
+                
             });
             
-            //WHen the user clicks on the equals sign it is going to.. { }
-            //parseInt is a jQuery function for math - if the user presses plus the result takes the first and second number and adds it together etc..
 
-            $(".equal").on("click", function () {
-                firstNumber = parseInt(firstNumber);
-                secondNumber = parseInt(secondNumber);
+                $(".equal").on("click", function () {
+                    firstNumber = parseInt(firstNumber);
+                    secondNumber = parseInt(secondNumber);
 
-                if (operator === "plus") {
-                    result = firstNumber + secondNumber;
-                }
+                    if (operator === "plus") {
+                        result = firstNumber + secondNumber;
+                    }
 
-                if (operator === "minus") {
-                    result = firstNumber - secondNumber;
-                }
+                    if (operator === "minus") {
+                        result = firstNumber - secondNumber;
+                    }
 
-                if (operator === "times") {
-                    result = firstNumber * secondNumber;
-                }
+                    if (operator === "times") {
+                        result = firstNumber * secondNumber;
+                    }
 
-                if (operator === "divide") {
-                    result = firstNumber / secondNumber;
-                }
+                    if (operator === "divide") {
+                        result = firstNumber / secondNumber;
+                    }
 
-                if (operator === "power") {
-                    result = Math.power(firstNumber, secondNumber);
-                }
-                
-                //the result titled id in the DOM will print out the math into the html space its assigned to
-                //*** MAKE SURE TO SPELL EVERYTHING RIGHT ACCORDING TO DOM ID'S AND CLASSES
-                $("#result").html(result);
+                    if (operator === "power") {
+                        result = Math.power(firstNumber, secondNumber);
+                    }
 
-            });
+                    $("#result").html(result);
 
-            //When the user clicks the clear button the initializedCalculator will wipe the page info
+                });
 
-            $(".clear").on("click", function () {
+                $(".clear").on("click", function () {
 
+                    initializeCalculator();
+
+                })
                 initializeCalculator();
-
-            })
-            initializeCalculator();
 
         });
 
